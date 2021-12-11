@@ -1,7 +1,11 @@
 Param (
-    
-    $TaskList = "BuildValidatePublish",
-    $Version = "0.0.1"
+    [ Parameter( Mandatory = $false ) ]
+    [ ValidateSet( 'BuildPackagePublish', 'Build', 'Test', 'Publish')]
+    [string] $TaskList = "BuildPackagePublish",
+
+    [ Parameter ( Mandatory = $false) ]
+    [ ValidatePattern( '\d{1,2}.\d{1,2}.\d{1,3}.\d{1,4}' ) ]
+    [string] $Version = '1.0.0.0'
 )
 # Check if psake is installed
 $ErrorActionPreference = 'stop'
@@ -18,4 +22,4 @@ if ( -not( Get-Module -ListAvailable -Name $ModuleName ) ) {
     
 }
 
-Invoke-psake .\build.psake.ps1 -taskList $TaskList  
+Invoke-psake .\build.psake.ps1 -taskList $TaskList -parameters @{"Version"=$Version; "AnyOtherParameter"="Additional Parameter required"}
