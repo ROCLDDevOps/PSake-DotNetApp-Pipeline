@@ -14,6 +14,7 @@
 FormatTaskName (("-"*25) + "[ {0} ]" + ("-"*25))
 
 TaskTearDown {
+            # Prints a new line after each task 
             "`n"
         }
 Task default -depends Prerequisites
