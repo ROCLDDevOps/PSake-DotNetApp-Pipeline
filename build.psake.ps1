@@ -30,9 +30,9 @@ Task Prerequisites {
     if ( -not (Get-InstalledModule -Name VSSetup -ErrorAction SilentlyContinue )) {
 
         Write-Host "Installing VSSetup Tools ..." -ForegroundColor Cyan
-        Install-Module VSSetup -Scope CurrentUser -Force
-        
-     }else {
+        Install-Module VSSetup -Scope CurrentUser -Force 
+               
+     }
         
         $VisualStudio = Get-VSSetupInstance
 
@@ -48,7 +48,6 @@ Task Prerequisites {
             Assert ( (Test-Path $Global:MSBuildexe) -eq $true ) "MSBuild.exe not found, even though $($VisualStudio.InstallVersion) is installed on $($VisualStudio.Installationpath) " 
   
         }
-     }
 
 }
 
