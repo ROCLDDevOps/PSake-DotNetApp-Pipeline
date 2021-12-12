@@ -20,8 +20,13 @@ if ( -not( Get-Module -ListAvailable -Name $ModuleName ) ) {
     Write-Host "- - - Installation will be restricted to the CurrentUser. If you want to use for other users, please run as an administrator the  following command: `
      `n >>>> Find-Package -Name $ModuleName -Source 'PSGallery'  | Install-Module <<<< `n " -ForegroundColor Yellow
     
-    Find-Package -Name $ModuleName -Source 'PSGallery'  | Install-Module -Scope CurrentUser -Force
+    Find-Package -Name $ModuleName -Source 'PSGallery'  | Install-Module -Scope CurrentUser -Force 
+}
+
+if ( -not (Get-PackageProvider -name NuGet -ErrorAction SilentlyContinue) ) {
     
+    Write-Host "- - - Installing NuGet package provider ... - - -" -ForegroundColor Yellow
+    Install-PackageProvider -Name NuGet -Scope CurrentUser -Force
 }
 
 Invoke-psake .\build.psake.ps1 -taskList $TaskList -parameters @{"Version"=$Version; "AnyOtherParameter"="Additional Parameter required"}
