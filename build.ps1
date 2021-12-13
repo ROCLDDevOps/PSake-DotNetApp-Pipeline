@@ -18,7 +18,7 @@ if ( -not( Get-Module -ListAvailable -Name $ModuleName ) ) {
 
     Write-Host "- - - $ModuleName not present. Will be installed shortly. - - -" -ForegroundColor Cyan
     Write-Host "- - - Installation will be restricted to the CurrentUser. If you want to use for other users, please run as an administrator the  following command: `
-     `n >>>> Find-Package -Name $ModuleName -Source 'PSGallery'  | Install-Module <<<< `n " -ForegroundColor Yellow
+     `n >>>> Find-Package -Name 'psake' -Source 'PSGallery'  | Install-Module <<<< `n " -ForegroundColor Yellow
     
     Find-Package -Name $ModuleName -Source 'PSGallery'  | Install-Module -Scope CurrentUser -Force 
 }
