@@ -30,7 +30,7 @@ Task Prerequisites {
     if ( -not (Get-InstalledModule -Name VSSetup -ErrorAction SilentlyContinue )) {
 
         Write-Host "Installing VSSetup Tools ..." -ForegroundColor Cyan
-        Install-Module VSSetup -Scope CurrentUser -Force 
+        Install-Module VSSetup -Scope CurrentUser -Repository 'PsGallery' -Force 
                
      }
         
